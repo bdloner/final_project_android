@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MoneyGrow</string>
+
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="start">Start</string>
+
+    <string name="title_slide1">MoneyGrow</string>
+    <string name="desc_slide1">คุณสามารถบันทึกรายรับรายจ่ายได้อย่าง \nสดวกและรวดเร็ว</string>
+
+    <string name="title_slide2">ตั้งเป้าหมาย</string>
+    <string name="desc_slide2">การที่เราตั้งเป้าหมายในการออม \nมันจะสร้างแรงจูงใจให้คุณประหยัดเงินได้มากขึ้น</string>
+
+    <string name="title_slide3">เติบโตไปด้วยกัน</string>
+    <string name="desc_slide3">ทำให้ต้นไม้เติบโตไปด้วยกันกับคุณสิ \nมันช่วยสร้างแรงบรรดาลใจให้คุณได้นะ</string>
+
+    <string name="title_slide4">เงินออมในปัจจุบัน</string>
+    <string name="desc_slide4">ในตอนนี้คุณมีเงินอยู่เท่าไหร่ \n(คุณสามารถเปลี่ยนแปลงเงินออมในปัจจุบันได้อีกในภายหลัง)</string>
+</resources>

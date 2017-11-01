@@ -16,4 +16,14 @@
 
     <string name="title_slide4">เงินออมในปัจจุบัน</string>
     <string name="desc_slide4">ในตอนนี้คุณมีเงินอยู่เท่าไหร่ \n(คุณสามารถเปลี่ยนแปลงเงินออมในปัจจุบันได้อีกในภายหลัง)</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="action_day">วัน</string>
+    <string name="action_week">สัปดาห์</string>
+    <string name="action_month">เดือน</string>
+    <string name="action_year">ปี</string>
+    <string name="action_all">ทั้งหมด</string>
+
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

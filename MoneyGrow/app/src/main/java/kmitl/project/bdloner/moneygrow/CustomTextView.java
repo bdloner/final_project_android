@@ -1,4 +1,4 @@
-package kmitl.moneygrow.bdloner.moneygrow;
+package kmitl.project.bdloner.moneygrow;
 
 /**
  * Created by BDLoneR on 31/10/2560.
@@ -6,10 +6,8 @@ package kmitl.moneygrow.bdloner.moneygrow;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.widget.TextView;
 
 public class CustomTextView extends android.support.v7.widget.AppCompatTextView {
     public CustomTextView(Context context) {

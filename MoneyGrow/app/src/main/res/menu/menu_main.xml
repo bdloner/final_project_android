@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:icon="@drawable/filter_icon"
+    tools:context="kmitl.project.bdloner.moneygrow.MainActivity">
+
+    <item
+        android:id="@+id/action_day"
+        android:title="@string/action_day" />
+    <item
+        android:id="@+id/action_week"
+        android:title="@string/action_week" />
+    <item
+        android:id="@+id/action_month"
+        android:title="@string/action_month" />
+    <item
+        android:id="@+id/action_year"
+        android:title="@string/action_year" />
+    <item
+        android:id="@+id/action_all"
+        android:title="@string/action_all" />
+</menu>

@@ -1,4 +1,4 @@
-package kmitl.moneygrow.bdloner.moneygrow;
+package kmitl.project.bdloner.moneygrow;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

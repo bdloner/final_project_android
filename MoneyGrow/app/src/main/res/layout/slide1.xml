@@ -18,7 +18,7 @@
             android:layout_height="@dimen/img_height"
             android:src="@drawable/ic_slide1" />
 
-        <kmitl.moneygrow.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.CustomTextView
             android:id="@+id/customTextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/slide_title"
             android:textStyle="bold" />
 
-        <kmitl.moneygrow.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

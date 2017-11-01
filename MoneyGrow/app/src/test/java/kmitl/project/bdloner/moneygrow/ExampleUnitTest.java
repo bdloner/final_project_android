@@ -1,4 +1,4 @@
-package kmitl.moneygrow.bdloner.moneygrow;
+package kmitl.project.bdloner.moneygrow;
 
 import org.junit.Test;
 

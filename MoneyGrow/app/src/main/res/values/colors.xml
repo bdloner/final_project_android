@@ -15,4 +15,14 @@
 
     <!-- dots inactive colors -->
     <color name="dot_inactive">#cccccc</color>
+
+    <!-- floating button income color -->
+    <color name="fab_plus_color">#8d3d15</color>
+
+    <!-- floating button income color -->
+    <color name="fab1_color">#45b800</color>
+
+    <!-- floating button expenditure color -->
+    <color name="fab2_color">#ff0000</color>
+
 </resources>

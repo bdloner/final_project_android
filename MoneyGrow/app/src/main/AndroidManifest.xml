@@ -20,7 +20,8 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CalculatorActivity"></activity>
+        <activity android:name=".CalculatorActivity" />
+        <activity android:name=".CategoryIncome"></activity>
     </application>
 
 </manifest>

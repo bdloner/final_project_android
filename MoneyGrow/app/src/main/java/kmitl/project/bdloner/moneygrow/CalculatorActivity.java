@@ -1,14 +1,21 @@
 package kmitl.project.bdloner.moneygrow;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -16,23 +23,83 @@ import java.util.regex.Pattern;
 public class CalculatorActivity extends AppCompatActivity {
 
     private CustomTextView screen;
+    private Button test;
     private String display = "";
     private String currentOperator = "";
     private String result = "";
+    private Calendar myCalendar;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
+        myCalendar = Calendar.getInstance();
+
+        editText= (EditText) findViewById(R.id.dateText);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+        };
+
+        editText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(CalculatorActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        //Display Calculator
         screen = (CustomTextView) findViewById(R.id.screen);
         screen.setText(display);
 
-        //DateTime
-        CustomTextView dateText = (CustomTextView) findViewById(R.id.dateText);
-        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        //choose income or expen
+        int x = getIntent().getExtras().getInt("btnCatIn");
 
-        dateText.setText(currentDateTimeString);
+        if(x == 0){
+            test = (Button) findViewById(R.id.btnCatIn);
+            test.setText("เลือกประเภทรายรับ");
+            View a = findViewById(R.id.btnCatIn);
+            a.setVisibility(View.VISIBLE);
+        }else if(x == 1){
+            test = (Button) findViewById(R.id.btnCatEx);
+            test.setText("เลือกประเภทรายจ่าย");
+            View b = findViewById(R.id.btnCatEx);
+            b.setVisibility(View.VISIBLE);
+        }
+
+        /*String strX = String.valueOf(x);*/
+
+        //DateTime
+        editText.setHint(formatTh().format(myCalendar.getTime()));
+
+    }
+
+    private Format formatTh(){
+        Format formatter;
+        formatter = new SimpleDateFormat("EEEE , dd MMMM yyyy", new Locale("th", "TH"));
+        return formatter;
+    }
+
+    private void updateLabel() {
+
+        editText.setText(formatTh().format(myCalendar.getTime()));
+        editText.setTextColor(Color.WHITE);
+        editText.setTextSize(15);
+        editText.setGravity(Gravity.CENTER);
 
     }
 
@@ -129,7 +196,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
 
     public void onClickCatIncome(View view) {
-        Intent intent = new Intent(getApplicationContext(), CategoryIncome.class);
+        Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
         startActivity(intent);
     }
 }

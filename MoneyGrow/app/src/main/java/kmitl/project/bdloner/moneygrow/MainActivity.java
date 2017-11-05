@@ -107,6 +107,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CalculatorActivity.class);
+                intent.putExtra("btnCatIn", 0);
+                startActivity(intent);
+            }
+        });
+
+        fab_ex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CalculatorActivity.class);
+                intent.putExtra("btnCatIn", 1);
                 startActivity(intent);
             }
         });

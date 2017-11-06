@@ -28,19 +28,8 @@ import kmitl.project.bdloner.moneygrow.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     private FloatingActionButton fab_plus, fab_ex, fab_in;
@@ -82,23 +71,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isOpen){
-                    fab_in.startAnimation(FabClose);
-                    fab_ex.startAnimation(FabClose);
-                    fab_in_text.startAnimation(FabClose);
-                    fab_ex_text.startAnimation(FabClose);
-                    fab_plus.startAnimation(FabRanticlockwise);
-                    fab_ex.setClickable(false);
-                    fab_in.setClickable(false);
-                    isOpen = false;
+                    animationCloseOnClick();
                 }else {
-                    fab_in.startAnimation(FabOpen);
-                    fab_ex.startAnimation(FabOpen);
-                    fab_in_text.startAnimation(FabOpen);
-                    fab_ex_text.startAnimation(FabOpen);
-                    fab_plus.startAnimation(FabRClockwisw);
-                    fab_ex.setClickable(true);
-                    fab_in.setClickable(true);
-                    isOpen = true;
+                    animationOpenOnClick();
                 }
             }
         });
@@ -106,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         fab_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                animationCloseOnClick();
+
                 Intent intent = new Intent(getApplicationContext(), CalculatorActivity.class);
                 intent.putExtra("btnCatIn", 0);
                 startActivity(intent);
@@ -115,12 +92,36 @@ public class MainActivity extends AppCompatActivity {
         fab_ex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                animationCloseOnClick();
+
                 Intent intent = new Intent(getApplicationContext(), CalculatorActivity.class);
                 intent.putExtra("btnCatIn", 1);
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void animationCloseOnClick(){
+        fab_in.startAnimation(FabClose);
+        fab_ex.startAnimation(FabClose);
+        fab_in_text.startAnimation(FabClose);
+        fab_ex_text.startAnimation(FabClose);
+        fab_plus.startAnimation(FabRanticlockwise);
+        fab_ex.setClickable(false);
+        fab_in.setClickable(false);
+        isOpen = false;
+    }
+
+    public void animationOpenOnClick(){
+        fab_in.startAnimation(FabOpen);
+        fab_ex.startAnimation(FabOpen);
+        fab_in_text.startAnimation(FabOpen);
+        fab_ex_text.startAnimation(FabOpen);
+        fab_plus.startAnimation(FabRClockwisw);
+        fab_ex.setClickable(true);
+        fab_in.setClickable(true);
+        isOpen = true;
     }
 
 
@@ -167,10 +168,6 @@ public class MainActivity extends AppCompatActivity {
         public PlaceholderFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();

@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class CalculatorActivity extends AppCompatActivity {
 
-    private CustomTextView screen;
+    private EditText screen;
     private Button test;
     private String display = "";
     private String currentOperator = "";
@@ -63,7 +63,8 @@ public class CalculatorActivity extends AppCompatActivity {
         });
 
         //Display Calculator
-        screen = (CustomTextView) findViewById(R.id.screen);
+        screen = (EditText) findViewById(R.id.screen);
+        screen.setEnabled(false);
         screen.setText(display);
 
         //choose income or expen
@@ -196,7 +197,26 @@ public class CalculatorActivity extends AppCompatActivity {
 
 
     public void onClickCatIncome(View view) {
-        Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
-        startActivity(intent);
+        if( screen.getText().toString().trim().equals("")) {
+
+            screen.setError("Money is required!");
+
+        } else {
+            screen.setError(null);
+
+            int x = getIntent().getExtras().getInt("btnCatIn");
+            if (x == 0){
+                Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                intent.putExtra("catChoose", 0);
+                startActivity(intent);
+            } else if(x == 1){
+                Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                intent.putExtra("catChoose", 1);
+                startActivity(intent);
+            }
+        }
+
+
+
     }
 }

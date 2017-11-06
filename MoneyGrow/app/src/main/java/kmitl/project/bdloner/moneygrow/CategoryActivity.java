@@ -23,6 +23,7 @@ public class CategoryActivity extends AppCompatActivity {
     private GridView gridView;
     private ListViewAdapter listViewAdapter;
     private GridViewAdapter gridViewAdapter;
+    private CustomTextView textTopicCat;
     private List<Product> productList;
     private int currentViewMode = 0;
 
@@ -86,15 +87,42 @@ public class CategoryActivity extends AppCompatActivity {
 
     public List<Product> getProductList() {
         //pseudo code to get product, replace your code to get real product here
-        productList = new ArrayList<>();
-        productList.add(new Product(R.drawable.salary, "เงินเดือน", "เงินที่ได้ต่อเดือน"));
-        productList.add(new Product(R.drawable.sales, "ยอดขาย", "เงินที่ได้จากการทำยอดขาย"));
-        productList.add(new Product(R.drawable.interest, "ดอกเบี้ย", "เงินได้ที่จากการฝากธนาคารหรือการฝากแบบอื่น"));
-        productList.add(new Product(R.drawable.saving, "การออม", "เงินที่ได้จากการอดออมทรัพทย์สินของตัวเอง"));
-        productList.add(new Product(R.drawable.scholarship, "ทุนการศึกษา", "เงินที่ได้จากการเรียนดีหรือทุนการศึกษาอื่น"));
-        productList.add(new Product(R.drawable.reward, "เงินรางวัล", "เงินที่ได้จากการทำความดีหรือเงินรางวัลอื่น"));
-        productList.add(new Product(R.drawable.other, "อื่นๆ", "เงินที่ได้จากช่องทางอื่น"));
+        int y = getIntent().getExtras().getInt("catChoose");
+        textTopicCat = (CustomTextView) findViewById(R.id.textTopicCat);
 
+        if (y == 0) {
+
+            textTopicCat.setText("กรุณาเลือกประเภทรายรับ");
+            productList = new ArrayList<>();
+            productList.add(new Product(R.drawable.salary, "เงินเดือน", "เงินที่ได้ต่อเดือน"));
+            productList.add(new Product(R.drawable.sales, "ยอดขาย", "เงินที่ได้จากการทำยอดขาย"));
+            productList.add(new Product(R.drawable.interest, "ดอกเบี้ย", "เงินได้ที่จากการฝากธนาคารหรือการฝากแบบอื่น"));
+            productList.add(new Product(R.drawable.saving, "การออม", "เงินที่ได้จากการอดออมทรัพทย์สินของตัวเอง"));
+            productList.add(new Product(R.drawable.scholarship, "ทุนการศึกษา", "เงินที่ได้จากการเรียนดีหรือทุนการศึกษาอื่น"));
+            productList.add(new Product(R.drawable.reward, "เงินรางวัล", "เงินที่ได้จากการทำความดีหรือเงินรางวัลอื่น"));
+            productList.add(new Product(R.drawable.old, "เกษียณ", "เงินที่ได้จากการเกษียณอายุราชการ"));
+            productList.add(new Product(R.drawable.other, "อื่นๆ", "เงินที่ได้จากช่องทางอื่น"));
+
+        } else if (y == 1){
+
+            textTopicCat.setText("กรุณาเลือกประเภทรายจ่าย");
+            productList = new ArrayList<>();
+            productList.add(new Product(R.drawable.food, "อาหาร", "ค่าใช้จ่ายเกี่ยวกับอาหารหรืออาหารประเภทอื่นๆ"));
+            productList.add(new Product(R.drawable.drink, "เครื่องดื่ม", "ค่าใช้จ่ายเกี่ยวกับเครื่องดื่มหรือเครื่องดื่มประเภทอื่นๆ"));
+            productList.add(new Product(R.drawable.car, "รถยนต์", "ค่าใช้จ่ายเกี่ยวกับการดูแลรักษารถยนต์ เช่น น้ำมันรถ, ซ่อมบำรุง"));
+            productList.add(new Product(R.drawable.taxi, "การเดินทาง", "ค่าใช้จ่ายเกี่ยวกับการเดินทาง เช่น แท็กซี่, รถเมย์"));
+            productList.add(new Product(R.drawable.bill, "บิล", "ค่าใช้จ่ายเกี่ยวกับสาธารณูปโภคต่างๆ เช่น ค่าน้ำ, ค่าไฟ"));
+            productList.add(new Product(R.drawable.shopping, "ช้อปปิ้ง", "ค่าใช้จ่ายเกี่ยวกับการเที่ยวซื้อของต่างๆ เช่น เดินตลาด, เดินห้าง, ซื้อของออนไลน์"));
+            productList.add(new Product(R.drawable.pet, "สัตว์เลี้ยง", "ค่าใช้จ่ายเกี่ยวกับสัตว์เลี้ยง เช่น สุนัข, แมว"));
+            productList.add(new Product(R.drawable.games, "บันเทิง", "ค่าใช้จ่ายเกี่ยวกับสิ่งบันเทิงต่างๆ เช่น เกมส์, ภาพยนตร์"));
+            productList.add(new Product(R.drawable.healthly, "สุขภาพ", "ค่าใช้จ่ายเกี่ยวกับด้านสุขภาพ เช่น การรักษา, ฟิตเนส"));
+            productList.add(new Product(R.drawable.donate, "บริจาค", "ค่าใช้จ่ายเกี่ยวกับการบริจาคต่างๆ เช่น เพื่อการกุศล, ช่วยเหลืองาน"));
+            productList.add(new Product(R.drawable.house, "บ้าน", "ค่าใช้จ่ายเกี่ยวกับสิ่งของเครื่องใช้ภายในบ้าน เช่น ซ่อมแซมบ้าน, ปรับปรุงบ้าน"));
+            productList.add(new Product(R.drawable.school, "การศึกษา", "ค่าใช้จ่ายเกี่ยวกับค่าศึกษาเล่าเรียน เช่น ค่าเทอม, หนังสือ, อุปกรณ์การเรียน"));
+            productList.add(new Product(R.drawable.business, "การลงทุน", "ค่าใช้จ่ายเกี่ยวกับการลงทุนด้านธุรกิจต่างๆ เช่น เชิงธุรกิจ, ขายหุ้น"));
+            productList.add(new Product(R.drawable.other, "อื่นๆ", "ค่าใช้จ่ายจากช่องทางอื่น"));
+
+        }
         return productList;
     }
 

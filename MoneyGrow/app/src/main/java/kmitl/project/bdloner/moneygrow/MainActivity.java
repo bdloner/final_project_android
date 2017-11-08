@@ -1,80 +1,88 @@
 package kmitl.project.bdloner.moneygrow;
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import kmitl.project.bdloner.moneygrow.R;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
-    private SectionsPageAdapter mSectionsPageAdapter;
-
-    private ViewPager mViewPager;
 
     private FloatingActionButton fab_plus, fab_ex, fab_in;
     private CustomTextView fab_ex_text, fab_in_text;
     private Animation FabOpen, FabClose, FabRClockwisw, FabRanticlockwise;
     boolean isOpen = false;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            switch (item.getItemId()) {
+                case R.id.navigation_wallet:
+                    if(fab_plus.getVisibility() == View.INVISIBLE){
+                        fab_plus.setVisibility(View.VISIBLE);
+                    }
+                    WalletFragment fragmentWallet = new WalletFragment();
+                    transaction.replace(R.id.content, fragmentWallet , "WalletFragment").commit();
+                    return true;
+                case R.id.navigation_goal:
+                    if(fab_plus.getVisibility() == View.VISIBLE){
+                        fab_plus.setVisibility(View.INVISIBLE);
+                    }
+                    GoalFragment fragmentGoal = new GoalFragment();
+                    transaction.replace(R.id.content, fragmentGoal , "GoalFragment").commit();
+                    return true;
+                case R.id.navigation_chart:
+                    if(fab_plus.getVisibility() == View.VISIBLE){
+                        fab_plus.setVisibility(View.INVISIBLE);
+                    }
+                    ChartFragment fragmentChart = new ChartFragment();
+                    transaction.replace(R.id.content, fragmentChart , "ChartFragment").commit();
+                    return true;
+            }
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        fab_plus = findViewById(R.id.fab_plus);
+        fab_ex = findViewById(R.id.fab_ex);
+        fab_in = findViewById(R.id.fab_in);
+        fab_ex_text = findViewById(R.id.fab_ex_text);
+        fab_in_text = findViewById(R.id.fab_in_text);
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        mViewPager.setCurrentItem(1);
-
-        fab_plus = (FloatingActionButton)findViewById(R.id.fab_plus);
-        fab_ex = (FloatingActionButton)findViewById(R.id.fab_ex);
-        fab_in = (FloatingActionButton)findViewById(R.id.fab_in);
-        fab_ex_text = (CustomTextView) findViewById(R.id.fab_ex_text);
-        fab_in_text = (CustomTextView) findViewById(R.id.fab_in_text);
-
-        FabOpen = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
-        FabClose = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
-        FabRClockwisw = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
-        FabRanticlockwise = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_anticlockwise);
+        FabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        FabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        FabRClockwisw = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
+        FabRanticlockwise = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
 
         fab_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isOpen){
+                if (isOpen) {
                     animationCloseOnClick();
-                }else {
+                } else {
                     animationOpenOnClick();
                 }
             }
@@ -104,15 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "เดือนที่แล้ว");
-        adapter.addFragment(new Tab2Fragment(), "เดือนนี้");
-        adapter.addFragment(new Tab3Fragment(), "ปฏิทิน");
-        viewPager.setAdapter(adapter);
-    }
-
-    public void animationCloseOnClick(){
+    public void animationCloseOnClick() {
         fab_in.startAnimation(FabClose);
         fab_ex.startAnimation(FabClose);
         fab_in_text.startAnimation(FabClose);
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         isOpen = false;
     }
 
-    public void animationOpenOnClick(){
+    public void animationOpenOnClick() {
         fab_in.startAnimation(FabOpen);
         fab_ex.startAnimation(FabOpen);
         fab_in_text.startAnimation(FabOpen);
@@ -132,37 +132,6 @@ public class MainActivity extends AppCompatActivity {
         fab_ex.setClickable(true);
         fab_in.setClickable(true);
         isOpen = true;
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_day) {
-            Toast.makeText(this, "day is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.action_week){
-            Toast.makeText(this, "week is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.action_month){
-            Toast.makeText(this, "month is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.action_year){
-            Toast.makeText(this, "year is clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.action_all){
-            Toast.makeText(this, "all is clicked", Toast.LENGTH_SHORT).show();
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 }

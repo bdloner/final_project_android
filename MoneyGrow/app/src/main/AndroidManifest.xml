@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".IntroActivity" />
-        <activity
-            android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".CalculatorActivity" />
-        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".AddGoalActivity"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@
 
     <!-- floating button income color -->
     <color name="fab_plus_color">#8d3d15</color>
+    <color name="fab_plus_goal_color">#5ac638</color>
 
     <!-- floating button income color -->
     <color name="fab1_color">#45b800</color>

@@ -18,10 +18,10 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FloatingActionButton fab_plus, fab_ex, fab_in;
+    /*private FloatingActionButton fab_plus, fab_ex, fab_in;
     private CustomTextView fab_ex_text, fab_in_text;
     private Animation FabOpen, FabClose, FabRClockwisw, FabRanticlockwise;
-    boolean isOpen = false;
+    boolean isOpen = false;*/
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -33,23 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_wallet:
-                    if(fab_plus.getVisibility() == View.INVISIBLE){
-                        fab_plus.setVisibility(View.VISIBLE);
-                    }
                     WalletFragment fragmentWallet = new WalletFragment();
                     transaction.replace(R.id.content, fragmentWallet , "WalletFragment").commit();
                     return true;
                 case R.id.navigation_goal:
-                    if(fab_plus.getVisibility() == View.VISIBLE){
-                        fab_plus.setVisibility(View.INVISIBLE);
-                    }
                     GoalFragment fragmentGoal = new GoalFragment();
                     transaction.replace(R.id.content, fragmentGoal , "GoalFragment").commit();
                     return true;
                 case R.id.navigation_chart:
-                    if(fab_plus.getVisibility() == View.VISIBLE){
-                        fab_plus.setVisibility(View.INVISIBLE);
-                    }
                     ChartFragment fragmentChart = new ChartFragment();
                     transaction.replace(R.id.content, fragmentChart , "ChartFragment").commit();
                     return true;
@@ -66,18 +57,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        fab_plus = findViewById(R.id.fab_plus);
-        fab_ex = findViewById(R.id.fab_ex);
-        fab_in = findViewById(R.id.fab_in);
-        fab_ex_text = findViewById(R.id.fab_ex_text);
-        fab_in_text = findViewById(R.id.fab_in_text);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content, new WalletFragment()).commit();
 
-        FabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        FabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        FabRClockwisw = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
-        FabRanticlockwise = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
-
-        fab_plus.setOnClickListener(new View.OnClickListener() {
+        /*fab_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isOpen) {
@@ -132,6 +116,6 @@ public class MainActivity extends AppCompatActivity {
         fab_ex.setClickable(true);
         fab_in.setClickable(true);
         isOpen = true;
+    }*/
     }
-
 }

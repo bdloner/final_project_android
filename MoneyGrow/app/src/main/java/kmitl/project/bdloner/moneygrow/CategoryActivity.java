@@ -156,13 +156,6 @@ public class CategoryActivity extends AppCompatActivity {
             case R.id.item_menu_2:
                 currentViewMode = VIEW_MODE_LISTVIEW;
 
-           /* case R.id.item_menu_1:
-                if(VIEW_MODE_LISTVIEW == currentViewMode) {
-                    currentViewMode = VIEW_MODE_GRIDVIEW;
-                } else {
-                    currentViewMode = VIEW_MODE_LISTVIEW;
-                }*/
-
                 switchView();
                 //Save view mode in share reference
                 sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);

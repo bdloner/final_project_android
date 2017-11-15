@@ -6,10 +6,30 @@
     tools:context="kmitl.project.bdloner.moneygrow.GoalFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/showAll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Goal" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/all_item_goal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <kmitl.project.bdloner.moneygrow.CustomTextView
+        android:id="@+id/empty_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ยังไม่มีเป้าหมาย"
+        android:textSize="50dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_plus"

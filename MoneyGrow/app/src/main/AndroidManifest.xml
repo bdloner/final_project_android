@@ -20,7 +20,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CalculatorActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".AddGoalActivity"></activity>
+        <activity android:name=".AddGoalActivity" />
+        <activity android:name=".AddMoneyGoal"></activity>
     </application>
 
 </manifest>

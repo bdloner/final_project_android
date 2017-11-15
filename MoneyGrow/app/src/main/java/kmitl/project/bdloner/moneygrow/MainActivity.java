@@ -1,27 +1,15 @@
 package kmitl.project.bdloner.moneygrow;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
-    /*private FloatingActionButton fab_plus, fab_ex, fab_in;
-    private CustomTextView fab_ex_text, fab_in_text;
-    private Animation FabOpen, FabClose, FabRClockwisw, FabRanticlockwise;
-    boolean isOpen = false;*/
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,68 +42,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new WalletFragment()).commit();
 
-        /*fab_plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isOpen) {
-                    animationCloseOnClick();
-                } else {
-                    animationOpenOnClick();
-                }
-            }
-        });
-
-        fab_in.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animationCloseOnClick();
-
-                Intent intent = new Intent(getApplicationContext(), CalculatorActivity.class);
-                intent.putExtra("btnCatIn", 0);
-                startActivity(intent);
-            }
-        });
-
-        fab_ex.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animationCloseOnClick();
-
-                Intent intent = new Intent(getApplicationContext(), CalculatorActivity.class);
-                intent.putExtra("btnCatIn", 1);
-                startActivity(intent);
-            }
-        });
-
-    }
-
-    public void animationCloseOnClick() {
-        fab_in.startAnimation(FabClose);
-        fab_ex.startAnimation(FabClose);
-        fab_in_text.startAnimation(FabClose);
-        fab_ex_text.startAnimation(FabClose);
-        fab_plus.startAnimation(FabRanticlockwise);
-        fab_ex.setClickable(false);
-        fab_in.setClickable(false);
-        isOpen = false;
-    }
-
-    public void animationOpenOnClick() {
-        fab_in.startAnimation(FabOpen);
-        fab_ex.startAnimation(FabOpen);
-        fab_in_text.startAnimation(FabOpen);
-        fab_ex_text.startAnimation(FabOpen);
-        fab_plus.startAnimation(FabRClockwisw);
-        fab_ex.setClickable(true);
-        fab_in.setClickable(true);
-        isOpen = true;
-    }*/
     }
 }

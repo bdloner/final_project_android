@@ -30,7 +30,22 @@ public class myDbAdapter {
         contentValues.put(myDbHelper.AMOUNT_GOAL, amount);
         contentValues.put(myDbHelper.DESC_GOAL, desc);
         contentValues.put(myDbHelper.DATE_GOAL, date);
-        long id = db.insert(myDbHelper.TABLE_NAME, null , contentValues);
+        long id = db.insert(myDbHelper.TABLE_NAME1, null , contentValues);
+        db.close();
+        return id;
+    }
+
+    public long insertDataWallet(String cat_name_wallet, String date_wallet, String amount_wallet, String note_wallet)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(myDbHelper.CAT_NAME_WALLET, cat_name_wallet);
+        contentValues.put(myDbHelper.DATE_WALLET, date_wallet);
+        contentValues.put(myDbHelper.AMOUNT_WALLET, amount_wallet);
+        contentValues.put(myDbHelper.NOTE_WALLET, note_wallet);
+
+        long id = db.insert(myDbHelper.TABLE_NAME2, null , contentValues);
         db.close();
         return id;
     }
@@ -41,8 +56,8 @@ public class myDbAdapter {
         List<List> datas = new ArrayList<>();
         String[] columns = {myDbHelper.UID, myDbHelper.TITLE_GOAL, myDbHelper.START_GOAL,
                 myDbHelper.AMOUNT_GOAL, myDbHelper.DESC_GOAL, myDbHelper.DATE_GOAL};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
-        //StringBuffer buffer= new StringBuffer();
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME1,columns,null,null,null,null,null);
+
         while (cursor.moveToNext())
         {
             List<String> data = new ArrayList<>();
@@ -59,7 +74,35 @@ public class myDbAdapter {
             data.add(date);
             datas.add(data);
             data.add(String.valueOf(cid));
-            //buffer.append(cid+ " " + title + " " + amount + " " + desc + " " + date + " ");
+
+        }
+        db.close();
+        return datas;
+    }
+
+    public List<List> getDataWallet()
+    {
+        SQLiteDatabase db = myhelper.getReadableDatabase();
+        List<List> datas = new ArrayList<>();
+        String[] columns = {myDbHelper.WID, myDbHelper.DATE_WALLET, myDbHelper.CAT_NAME_WALLET,
+                myDbHelper.NOTE_WALLET, myDbHelper.AMOUNT_WALLET};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME2,columns,null,null,null,null,null);
+
+        while (cursor.moveToNext())
+        {
+            List<String> data = new ArrayList<>();
+            int wid =cursor.getInt(cursor.getColumnIndex(myDbHelper.WID));
+            String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE_WALLET));
+            String title =cursor.getString(cursor.getColumnIndex(myDbHelper.CAT_NAME_WALLET));
+            String note =cursor.getString(cursor.getColumnIndex(myDbHelper.NOTE_WALLET));
+            String amount =cursor.getString(cursor.getColumnIndex(myDbHelper.AMOUNT_WALLET));
+            data.add(date);
+            data.add(title);
+            data.add(note);
+            data.add(amount);
+            datas.add(data);
+            data.add(String.valueOf(wid));
+
         }
         db.close();
         return datas;
@@ -70,7 +113,7 @@ public class myDbAdapter {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] whereArgs = {cid};
 
-        int count =db.delete(myDbHelper.TABLE_NAME , myDbHelper.UID+" = ?",whereArgs);
+        int count =db.delete(myDbHelper.TABLE_NAME1 , myDbHelper.UID+" = ?",whereArgs);
         db.close();
         return  count;
     }
@@ -81,7 +124,7 @@ public class myDbAdapter {
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.TITLE_GOAL,newName);
         String[] whereArgs= {oldName};
-        int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.TITLE_GOAL+" = ?",whereArgs );
+        int count =db.update(myDbHelper.TABLE_NAME1,contentValues, myDbHelper.TITLE_GOAL+" = ?",whereArgs );
         return count;
     }
 
@@ -92,7 +135,7 @@ public class myDbAdapter {
         contentValues.put(myDbHelper.START_GOAL, newMoney);
 
         String[] whereArgs = {OldId};
-        int count = db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.UID +" = ?",whereArgs);
+        int count = db.update(myDbHelper.TABLE_NAME1,contentValues, myDbHelper.UID +" = ?",whereArgs);
         db.close();
         return count;
 
@@ -100,20 +143,43 @@ public class myDbAdapter {
 
     static class myDbHelper extends SQLiteOpenHelper
     {
-        private static final String DATABASE_NAME = "myDatabase";    // Database Name
-        private static final String TABLE_NAME = "myTable";   // Table Name
+        private static final String DATABASE_NAME = "dbMoneyGrow";    // Database Name
+
+        private static final String TABLE_NAME1 = "goalTable";   // Table1 Name
+        private static final String TABLE_NAME2 = "walletTable"; // Table2 Name
+
         private static final int DATABASE_Version = 1;    // Database Version
+
+        // Value of goalTable
         private static final String UID="_id";     // Column I (Primary Key)
         private static final String TITLE_GOAL = "Title_goal";    //Column II
         private static final String START_GOAL = "Start_goal";    //Column III
         private static final String AMOUNT_GOAL= "Amount_goal";    // Column IV
         private static final String DESC_GOAL= "Desc_goal";    // Column V
         private static final String DATE_GOAL= "Date_goal";    // Column VI
-        private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
+
+        // Value of walletTable
+        private static final String WID="_id";     // Column I (Primary Key)
+        private static final String CAT_NAME_WALLET = "Title_goal";    //Column II
+        private static final String DATE_WALLET = "Start_goal";    //Column III
+        private static final String NOTE_WALLET= "Amount_goal";    // Column IV
+        private static final String AMOUNT_WALLET= "Desc_goal";    // Column V
+
+        // Create goalTable
+        private static final String CREATE_TABLE1 = "CREATE TABLE "+TABLE_NAME1+
                 " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+TITLE_GOAL+" VARCHAR(255) ,"
                 + START_GOAL +" VARCHAR(255) ," + AMOUNT_GOAL +" VARCHAR(255) ,"
                 + DESC_GOAL +" VARCHAR(255) ," + DATE_GOAL +" VARCHAR(225));";
-        private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
+
+        // Create walletTable
+        private static final String CREATE_TABLE2 = "CREATE TABLE "+TABLE_NAME2+
+                " ("+WID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAT_NAME_WALLET+" VARCHAR(255) ,"
+                + DATE_WALLET +" VARCHAR(255) ," + NOTE_WALLET +" VARCHAR(255) ,"
+                + AMOUNT_WALLET +" VARCHAR(225));";
+
+        private static final String DROP_TABLE1 ="DROP TABLE IF EXISTS "+TABLE_NAME1;
+        private static final String DROP_TABLE2 ="DROP TABLE IF EXISTS "+TABLE_NAME2;
+
         private Context context;
 
         public myDbHelper(Context context) {
@@ -124,7 +190,8 @@ public class myDbAdapter {
         public void onCreate(SQLiteDatabase db) {
 
             try {
-                db.execSQL(CREATE_TABLE);
+                db.execSQL(CREATE_TABLE1);
+                db.execSQL(CREATE_TABLE2);
             } catch (Exception e) {
 
             }
@@ -133,7 +200,8 @@ public class myDbAdapter {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             try {
-                db.execSQL(DROP_TABLE);
+                db.execSQL(DROP_TABLE1);
+                db.execSQL(DROP_TABLE2);
                 onCreate(db);
             }catch (Exception e) {
             }

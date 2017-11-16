@@ -28,7 +28,7 @@ public class CalculatorActivity extends AppCompatActivity {
     private String currentOperator = "";
     private String result = "";
     private Calendar myCalendar;
-    private EditText editText;
+    private EditText textDate, textNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,9 @@ public class CalculatorActivity extends AppCompatActivity {
 
         myCalendar = Calendar.getInstance();
 
-        editText= (EditText) findViewById(R.id.dateText);
+        textDate = findViewById(R.id.text_date);
+        textNote = findViewById(R.id.text_note);
+
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -51,7 +53,7 @@ public class CalculatorActivity extends AppCompatActivity {
             }
         };
 
-        editText.setOnClickListener(new View.OnClickListener() {
+        textDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -63,7 +65,7 @@ public class CalculatorActivity extends AppCompatActivity {
         });
 
         //Display Calculator
-        screen = (EditText) findViewById(R.id.screen);
+        screen = findViewById(R.id.screen);
         screen.setEnabled(false);
         screen.setText(display);
 
@@ -85,7 +87,8 @@ public class CalculatorActivity extends AppCompatActivity {
         /*String strX = String.valueOf(x);*/
 
         //DateTime
-        editText.setHint(formatTh().format(myCalendar.getTime()));
+        textDate.setText(formatTh().format(myCalendar.getTime()));
+        textDate.setTextColor(Color.parseColor("#ffffff"));
 
     }
 
@@ -97,10 +100,10 @@ public class CalculatorActivity extends AppCompatActivity {
 
     private void updateLabel() {
 
-        editText.setText(formatTh().format(myCalendar.getTime()));
-        editText.setTextColor(Color.WHITE);
-        editText.setTextSize(15);
-        editText.setGravity(Gravity.CENTER);
+        textDate.setText(formatTh().format(myCalendar.getTime()));
+        textDate.setTextColor(Color.WHITE);
+        textDate.setTextSize(15);
+        textDate.setGravity(Gravity.CENTER);
 
     }
 
@@ -204,14 +207,28 @@ public class CalculatorActivity extends AppCompatActivity {
         } else {
             screen.setError(null);
 
+            Wallet wallet = new Wallet();
+
             int x = getIntent().getExtras().getInt("btnCatIn");
             if (x == 0){
+
                 Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
                 intent.putExtra("catChoose", 0);
+
+                intent.putExtra("date_wallet", textDate.getText().toString());
+                intent.putExtra("amount_wallet", screen.getText().toString());
+                intent.putExtra("note_wallet", textNote.getText().toString());
+
                 startActivity(intent);
             } else if(x == 1){
+
                 Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
                 intent.putExtra("catChoose", 1);
+
+                intent.putExtra("date_wallet", textDate.getText().toString());
+                intent.putExtra("amount_wallet", screen.getText().toString());
+                intent.putExtra("note_wallet", textNote.getText().toString());
+
                 startActivity(intent);
             }
         }

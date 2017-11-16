@@ -33,6 +33,7 @@ public class GoalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_goal, container, false);
+
         recyclerView = v.findViewById(R.id.all_item_goal);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -63,8 +64,6 @@ public class GoalFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser){
-            //เวลากดdeleteแล้วเปลี่ยนแท็บ อีกแท็บจะไม่เปลี่ยน
-            //ให้dbมาใหม่
             createRecyclerView();
             adapter.notifyDataSetChanged();
         }

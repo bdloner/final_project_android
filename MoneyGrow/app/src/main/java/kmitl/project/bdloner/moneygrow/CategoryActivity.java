@@ -1,5 +1,6 @@
 package kmitl.project.bdloner.moneygrow;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class CategoryActivity extends AppCompatActivity {
     private CustomTextView textTopicCat;
     private List<Product> productList;
     private int currentViewMode = 0;
+    private myDbAdapter helper;
 
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
@@ -34,6 +36,8 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+
+        helper = new myDbAdapter(this);
 
         stubList = (ViewStub) findViewById(R.id.stub_list);
         stubGrid = (ViewStub) findViewById(R.id.stub_grid);
@@ -129,6 +133,9 @@ public class CategoryActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            add(position);
+
             //Do any thing when user click to item
             Toast.makeText(getApplicationContext(), productList.get(position).getTitle() + " - " + productList.get(position).getDescription(), Toast.LENGTH_SHORT).show();
         }
@@ -168,4 +175,35 @@ public class CategoryActivity extends AppCompatActivity {
         return true;
     }
 
+    public void add(int position) {
+        Wallet wallet = new Wallet();
+
+        String date_wallet = getIntent().getExtras().getString("date_wallet");
+        String amount_wallet = getIntent().getExtras().getString("amount_wallet");
+        String note_wallet = getIntent().getExtras().getString("note_wallet");
+
+        wallet.setCat_name_wallet(productList.get(position).getTitle());
+        wallet.setDate_wallet(date_wallet);
+        wallet.setAmount_wallet(amount_wallet);
+        wallet.setNote_wallet(note_wallet);
+
+        long id = helper.insertDataWallet(wallet.getCat_name_wallet(), wallet.getDate_wallet(),
+                wallet.getAmount_wallet(), wallet.getNote_wallet());
+        if(id<=0)
+        {
+            Toast.makeText(getApplicationContext(), "เพิ่มลงในกระเป๋าตังไม่สำเร็จ", Toast.LENGTH_SHORT).show();
+
+        } else
+        {
+            Toast.makeText(getApplicationContext(), "เพิ่มลงในกระเป๋าตังสำเร็จ", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        }
+    }
+
 }
+
+

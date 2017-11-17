@@ -183,12 +183,13 @@ public class CategoryActivity extends AppCompatActivity {
         String note_wallet = getIntent().getExtras().getString("note_wallet");
 
         wallet.setCat_name_wallet(productList.get(position).getTitle());
+        wallet.setImage_id_wallet(String.valueOf(productList.get(position).getImageId()));
         wallet.setDate_wallet(date_wallet);
         wallet.setAmount_wallet(amount_wallet);
         wallet.setNote_wallet(note_wallet);
 
         long id = helper.insertDataWallet(wallet.getCat_name_wallet(), wallet.getDate_wallet(),
-                wallet.getAmount_wallet(), wallet.getNote_wallet());
+                wallet.getAmount_wallet(), wallet.getNote_wallet(), wallet.getImage_id_wallet());
         if(id<=0)
         {
             Toast.makeText(getApplicationContext(), "เพิ่มลงในกระเป๋าตังไม่สำเร็จ", Toast.LENGTH_SHORT).show();

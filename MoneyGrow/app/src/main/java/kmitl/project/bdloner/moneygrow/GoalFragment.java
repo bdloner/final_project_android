@@ -63,7 +63,7 @@ public class GoalFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
+        if(getView()!=null){
             createRecyclerView();
             adapter.notifyDataSetChanged();
         }

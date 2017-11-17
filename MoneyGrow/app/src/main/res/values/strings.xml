@@ -14,8 +14,8 @@
     <string name="title_slide3">เติบโตไปด้วยกัน</string>
     <string name="desc_slide3">ทำให้ต้นไม้เติบโตไปด้วยกันกับคุณสิ \nมันช่วยสร้างแรงบรรดาลใจให้คุณได้นะ</string>
 
-    <string name="title_slide4">เงินออมในปัจจุบัน</string>
-    <string name="desc_slide4">ในตอนนี้คุณมีเงินอยู่เท่าไหร่ \n(คุณสามารถเปลี่ยนแปลงเงินออมในปัจจุบันได้อีกในภายหลัง)</string>
+    <string name="title_slide4">เริ่มต้นการออม</string>
+    <string name="desc_slide4">เราจะทำให้ชีวิตคุณง่ายขึ้น</string>
     <string name="title_activity_main2">Main2Activity</string>
 
     <string name="action_day">วัน</string>
@@ -27,10 +27,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main">MainActivity</string>
 
-    <string name="title_wallet">Wallet</string>
-    <string name="title_goal">Goal</string>
-    <string name="title_calendar">Calendar</string>
-    <string name="title_chart">Chart</string>
+    <string name="title_wallet">กระเป๋าตัง</string>
+    <string name="title_goal">เป้าหมาย</string>
+    <string name="title_current">แลกเปลี่ยนค่าเงิน</string>
+    <string name="title_chart">แผนภูมิ</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

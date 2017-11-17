@@ -207,11 +207,12 @@ public class CalculatorActivity extends AppCompatActivity {
         } else {
             screen.setError(null);
 
-            Wallet wallet = new Wallet();
-
             int x = getIntent().getExtras().getInt("btnCatIn");
+
             if (x == 0){
 
+                /*WalletAdapter type = new WalletAdapter(x);
+*/
                 Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
                 intent.putExtra("catChoose", 0);
 
@@ -221,6 +222,8 @@ public class CalculatorActivity extends AppCompatActivity {
 
                 startActivity(intent);
             } else if(x == 1){
+
+                /*WalletAdapter type = new WalletAdapter(x);*/
 
                 Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
                 intent.putExtra("catChoose", 1);

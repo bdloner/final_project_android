@@ -27,13 +27,12 @@
 
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/image_icon"
                 android:layout_width="58dp"
                 android:layout_height="54dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/saving"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_date" />
@@ -42,16 +41,16 @@
                 android:id="@+id/cat_title_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/imageView2"
+                android:layout_alignTop="@+id/image_icon"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_toEndOf="@+id/imageView2"
-                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/image_icon"
+                android:layout_toRightOf="@+id/image_icon"
                 android:text="Title"
                 android:textSize="22dp"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toTopOf="@+id/desc_card"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/image_icon"
                 app:layout_constraintTop_toBottomOf="@+id/date_card" />
 
             <kmitl.project.bdloner.moneygrow.CustomTextView
@@ -67,8 +66,20 @@
                 android:text="Description"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/image_icon"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="#695043"
+                app:layout_constraintBottom_toTopOf="@+id/image_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <kmitl.project.bdloner.moneygrow.CustomTextView
@@ -78,17 +89,35 @@
                 android:layout_alignLeft="@+id/txt_desc"
                 android:layout_alignStart="@+id/txt_desc"
                 android:layout_below="@+id/txt_desc"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
                 android:text="12 พฤศจิกายน 2017"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
+            <kmitl.project.bdloner.moneygrow.CustomTextView
+                android:id="@+id/txt_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="คลิกค้างเพื่อแก้ไขหรือลบข้อมูล"
+                android:textColor="#b7b7b7"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/date_card"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <!-- <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -96,10 +125,10 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:background="#e6e6e6"
-                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintBottom_toTopOf="@+id/image_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" /> -->
 
             <kmitl.project.bdloner.moneygrow.CustomTextView
                 android:id="@+id/amount_card"

@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:text="ยังไม่มีเป้าหมาย"
         android:textSize="50dp"
+        android:textColor="#d1d1d1"
         android:layout_gravity="center"
         android:visibility="invisible"/>
 

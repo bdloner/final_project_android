@@ -35,11 +35,13 @@ public class myDbAdapter {
         return id;
     }
 
-    public long insertDataWallet(String cat_name_wallet, String date_wallet, String amount_wallet, String note_wallet)
+    public long insertDataWallet(String img, String cat_name_wallet, String date_wallet,
+                                 String amount_wallet, String note_wallet)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
+        contentValues.put(myDbHelper.IMAGE_WALLET, img);
         contentValues.put(myDbHelper.CAT_NAME_WALLET, cat_name_wallet);
         contentValues.put(myDbHelper.DATE_WALLET, date_wallet);
         contentValues.put(myDbHelper.AMOUNT_WALLET, amount_wallet);
@@ -84,22 +86,25 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getReadableDatabase();
         List<List> datas = new ArrayList<>();
-        String[] columns = {myDbHelper.WID, myDbHelper.DATE_WALLET, myDbHelper.CAT_NAME_WALLET,
-                myDbHelper.NOTE_WALLET, myDbHelper.AMOUNT_WALLET};
+        String[] columns = {myDbHelper.WID, myDbHelper.IMAGE_WALLET, myDbHelper.CAT_NAME_WALLET,
+                myDbHelper.DATE_WALLET, myDbHelper.AMOUNT_WALLET, myDbHelper.NOTE_WALLET};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME2,columns,null,null,null,null,null);
 
         while (cursor.moveToNext())
         {
             List<String> data = new ArrayList<>();
             int wid =cursor.getInt(cursor.getColumnIndex(myDbHelper.WID));
-            String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE_WALLET));
+            String image =cursor.getString(cursor.getColumnIndex(myDbHelper.IMAGE_WALLET));
             String title =cursor.getString(cursor.getColumnIndex(myDbHelper.CAT_NAME_WALLET));
-            String note =cursor.getString(cursor.getColumnIndex(myDbHelper.NOTE_WALLET));
+            String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE_WALLET));
             String amount =cursor.getString(cursor.getColumnIndex(myDbHelper.AMOUNT_WALLET));
-            data.add(date);
+            String note =cursor.getString(cursor.getColumnIndex(myDbHelper.NOTE_WALLET));
+
+            data.add(image);
             data.add(title);
-            data.add(note);
+            data.add(date);
             data.add(amount);
+            data.add(note);
             datas.add(data);
             data.add(String.valueOf(wid));
 
@@ -118,7 +123,35 @@ public class myDbAdapter {
         return  count;
     }
 
-    public int updateDetail(String oldName , String newName)
+    public  int deleteWallet(String wid)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] whereArgs = {wid};
+
+        int count =db.delete(myDbHelper.TABLE_NAME2 , myDbHelper.WID+" = ?",whereArgs);
+        db.close();
+        return  count;
+    }
+
+    public int updateDetailWallet(String old_title, String new_date, String new_amount,
+                                  String new_desc, String old_image, String oldId)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(myDbHelper.CAT_NAME_WALLET, old_title);
+        contentValues.put(myDbHelper.DATE_WALLET, new_date);
+        contentValues.put(myDbHelper.AMOUNT_WALLET, new_amount);
+        contentValues.put(myDbHelper.NOTE_WALLET, new_desc);
+        contentValues.put(myDbHelper.IMAGE_WALLET, old_image);
+
+        String[] whereArgs= {oldId};
+        int count =db.update(myDbHelper.TABLE_NAME2,contentValues, myDbHelper.WID+" = ?",whereArgs );
+        db.close();
+        return count;
+    }
+
+    public int updateDetailGoal(String oldName , String newName)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -128,13 +161,13 @@ public class myDbAdapter {
         return count;
     }
 
-    public int updateMoney(String newMoney, String OldId){
+    public int updateMoney(String newMoney, String oldId){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(myDbHelper.START_GOAL, newMoney);
 
-        String[] whereArgs = {OldId};
+        String[] whereArgs = {oldId};
         int count = db.update(myDbHelper.TABLE_NAME1,contentValues, myDbHelper.UID +" = ?",whereArgs);
         db.close();
         return count;
@@ -160,10 +193,11 @@ public class myDbAdapter {
 
         // Value of walletTable
         private static final String WID="_id";     // Column I (Primary Key)
-        private static final String CAT_NAME_WALLET = "Title_goal";    //Column II
-        private static final String DATE_WALLET = "Start_goal";    //Column III
-        private static final String NOTE_WALLET= "Amount_goal";    // Column IV
-        private static final String AMOUNT_WALLET= "Desc_goal";    // Column V
+        private static final String CAT_NAME_WALLET = "Title_wallet";    //Column II
+        private static final String DATE_WALLET = "Date_wallet";    //Column III
+        private static final String NOTE_WALLET= "Desc_wallet";    // Column IV
+        private static final String IMAGE_WALLET= "Img_wallet";    // Column V
+        private static final String AMOUNT_WALLET= "Amount_wallet";    // Column VI
 
         // Create goalTable
         private static final String CREATE_TABLE1 = "CREATE TABLE "+TABLE_NAME1+
@@ -174,7 +208,7 @@ public class myDbAdapter {
         // Create walletTable
         private static final String CREATE_TABLE2 = "CREATE TABLE "+TABLE_NAME2+
                 " ("+WID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAT_NAME_WALLET+" VARCHAR(255) ,"
-                + DATE_WALLET +" VARCHAR(255) ," + NOTE_WALLET +" VARCHAR(255) ,"
+                + DATE_WALLET +" VARCHAR(255) ," + NOTE_WALLET +" VARCHAR(255) ," + IMAGE_WALLET +" VARCHAR(255) ,"
                 + AMOUNT_WALLET +" VARCHAR(225));";
 
         private static final String DROP_TABLE1 ="DROP TABLE IF EXISTS "+TABLE_NAME1;

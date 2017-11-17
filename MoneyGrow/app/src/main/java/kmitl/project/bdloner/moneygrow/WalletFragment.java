@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -137,6 +138,40 @@ public class WalletFragment extends Fragment {
         }
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case 0:
+                final Wallet wallet = listItemWallet.get(item.getGroupId());
+                String id = wallet.getWid();
+                Intent intent = new Intent(getActivity(), EditWalletActivity.class);
+                intent.putExtra("oldId",id);
+                getActivity().startActivities(new Intent[]{intent});
+                getActivity().stopService(intent);
+                break;
+            case 1:
+                remove(item.getGroupId());
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    public void remove(int position){
+        final Wallet wallet= listItemWallet.get(position);
+
+        listItemWallet.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, listItemWallet.size());
+
+        String id = wallet.getWid();
+        dbAdapter.deleteWallet(id);
+        if(listItemWallet.size()==0){
+            empty.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void createRecyclerView(){
         dbAdapter = new myDbAdapter(getContext());
         List<List> datas = dbAdapter.getDataWallet();
@@ -144,11 +179,12 @@ public class WalletFragment extends Fragment {
         for (int i=0; i<datas.size();i++){
             List<String> eachWallet = datas.get(i);
             Wallet listWallet = new Wallet(
-                    ""+ eachWallet.get(1),// title
-                    ""+ eachWallet.get(0), // date
-                    ""+ eachWallet.get(2), // note
-                    "฿ "+ eachWallet.get(3), // amount
-                    ""+ eachWallet.get(4) // wid
+                    ""+ eachWallet.get(4),// image       0 title
+                    ""+ eachWallet.get(0), // title      1 date
+                    ""+ eachWallet.get(1), // date          2 amount
+                    "฿ "+ eachWallet.get(2), // amount    3 note
+                    "" + eachWallet.get(3), // note         4 image
+                    ""+ eachWallet.get(5) // wid
             );
             listItemWallet.add(listWallet);
         }

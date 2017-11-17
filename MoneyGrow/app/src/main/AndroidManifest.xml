@@ -21,7 +21,8 @@
         <activity android:name=".CalculatorActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".AddGoalActivity" />
-        <activity android:name=".AddMoneyGoal"></activity>
+        <activity android:name=".AddMoneyGoal" />
+        <activity android:name=".EditWalletActivity"></activity>
     </application>
 
 </manifest>

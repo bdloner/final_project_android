@@ -10,18 +10,29 @@ public class Wallet {
     private String date_wallet;
     private String note_wallet;
     private String amount_wallet;
+    private String image_id_wallet;
     private String wid;
 
     public Wallet(){
 
     }
 
-    public Wallet(String cat_name_wallet, String date_wallet, String note_wallet, String amount_wallet, String wid) {
+    public Wallet(String image_id_wallet, String cat_name_wallet, String date_wallet,
+                  String amount_wallet, String note_wallet, String wid) {
+        this.image_id_wallet = image_id_wallet;
         this.cat_name_wallet = cat_name_wallet;
         this.date_wallet = date_wallet;
-        this.note_wallet = note_wallet;
         this.amount_wallet = amount_wallet;
+        this.note_wallet = note_wallet;
         this.wid = wid;
+    }
+
+    public String getImage_id_wallet() {
+        return image_id_wallet;
+    }
+
+    public void setImage_id_wallet(String image_id_wallet) {
+        this.image_id_wallet = image_id_wallet;
     }
 
     public String getCat_name_wallet() {

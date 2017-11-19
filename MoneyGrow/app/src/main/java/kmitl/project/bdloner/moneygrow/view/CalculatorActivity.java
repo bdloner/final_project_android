@@ -112,6 +112,7 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     public void onClickNumber(View v) {
+
         if (result != "" || screen.getText().toString().equals("0") || screen.getText().toString().equals("00")) {
             clear();
             updateScreen();

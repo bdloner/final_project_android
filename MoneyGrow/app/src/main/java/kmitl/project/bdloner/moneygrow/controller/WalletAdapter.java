@@ -28,12 +28,6 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     private Context context;
     private myDbAdapter dbAdapter;
     private int type = 0;
-//    public int type;
-
-    /*public WalletAdapter(int type)
-    {
-        this.type = type;
-    }*/
 
     public WalletAdapter(List<Wallet> listItemWallet, Context context) {
         this.listItemWallet = listItemWallet;
@@ -78,6 +72,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
 
         } else {
             holder.amountCard.setTextColor(Color.parseColor("#FFD1131C"));
+            
 
             String ex = wallet.getAmount_wallet();
             ex = ex.replace("฿ ", "");
@@ -126,12 +121,6 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return listItemWallet.size();
-    }
-
-    public void removeAt(int position) {
-        listItemWallet.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, listItemWallet.size());
     }
 
     private void check(int position) {

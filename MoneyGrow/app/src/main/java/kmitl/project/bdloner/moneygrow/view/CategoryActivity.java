@@ -184,6 +184,8 @@ public class CategoryActivity extends AppCompatActivity {
     public void add(int position) {
         Wallet wallet = new Wallet();
 
+        int y = getIntent().getExtras().getInt("catChoose");
+
         String date_wallet = getIntent().getExtras().getString("date_wallet");
         String amount_wallet = getIntent().getExtras().getString("amount_wallet");
         String note_wallet = getIntent().getExtras().getString("note_wallet");
@@ -191,7 +193,13 @@ public class CategoryActivity extends AppCompatActivity {
         wallet.setCat_name_wallet(productList.get(position).getTitle());
         wallet.setImage_id_wallet(String.valueOf(productList.get(position).getImageId()));
         wallet.setDate_wallet(date_wallet);
-        wallet.setAmount_wallet(amount_wallet);
+
+        if(y == 0){
+            wallet.setAmount_wallet(amount_wallet);
+        } else if (y == 1){
+            wallet.setAmount_wallet("-"+amount_wallet);
+        }
+
         wallet.setNote_wallet(note_wallet);
 
         long id = helper.insertDataWallet(wallet.getCat_name_wallet(), wallet.getDate_wallet(),

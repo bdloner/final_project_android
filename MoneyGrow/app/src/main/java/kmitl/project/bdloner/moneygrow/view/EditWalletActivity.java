@@ -29,7 +29,6 @@ public class EditWalletActivity extends AppCompatActivity {
     private EditText oldTitle, newDesc, newDate, newAmount;
     private Button editBtn, cancelBtn;
     private myDbAdapter dbAdapter;
-    private Button delete;
     private String oldId;
     private Calendar myCalendar;
 

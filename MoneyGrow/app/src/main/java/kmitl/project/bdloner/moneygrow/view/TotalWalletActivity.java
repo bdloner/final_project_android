@@ -7,11 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import kmitl.project.bdloner.moneygrow.R;
+import kmitl.project.bdloner.moneygrow.controller.myDbAdapter;
 import kmitl.project.bdloner.moneygrow.init.CustomTextView;
+import kmitl.project.bdloner.moneygrow.model.Wallet;
 
 public class TotalWalletActivity extends AppCompatActivity {
 
+    List<Wallet> listAllWallet = new ArrayList<>();
+    private myDbAdapter dbAdapter;
     private CustomTextView txtIncome, txtExpenses, txtTotal, txtOldIncome, txtOldExpenses;
     private Button homeBtn;
 
@@ -30,7 +37,7 @@ public class TotalWalletActivity extends AppCompatActivity {
 
         /*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);*/
 
-        SharedPreferences sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        /*SharedPreferences sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
 
         String dataIncome = sp.getString("income", "0");
 
@@ -46,34 +53,32 @@ public class TotalWalletActivity extends AppCompatActivity {
 
         test2 = test1 + test2;
 
-        txtIncome.setText(String.valueOf(test2));
+        txtIncome.setText(String.valueOf(test2));*/
 
-        /*int x = Integer.parseInt(txtIncome.getText().toString());
+        dbAdapter = new myDbAdapter(getApplicationContext());
+        List<List> datas = dbAdapter.getDataWallet();
 
-        int income = Integer.parseInt(dataIncome);
+        int temp = 0, tempIn =0, tempEx=0;
+        String txtTemp = "";
+        for(int i=0;i<datas.size();i++){
+            txtTemp = String.valueOf(datas.get(i).get(2));
 
-        x += income;
+            temp += Integer.parseInt(txtTemp);
 
-        txtIncome.setText(String.valueOf(x));*/
+            int tempCheck = Integer.parseInt(txtTemp);
 
-//        String dataExpenses = prefs.getString("expenses", "0");
-//
-//        int y = Integer.parseInt(txtExpenses.getText().toString());
-//
-//        int expenses = Integer.parseInt(dataExpenses);
-//
-//        y += expenses;
-//
-//        txtExpenses.setText(String.valueOf(y));
+            if(tempCheck >= 0){
+                tempIn += tempCheck;
+                txtIncome.setText(String.valueOf(tempIn));
+            } else if(tempCheck < 0){
+                tempEx += tempCheck;
+                txtExpenses.setText(String.valueOf(tempEx));
+            }
 
-        /*x = getIntent().getExtras().getInt("income");
-        txtIncome.setText(String.valueOf(x));
+        }
 
-        y = getIntent().getExtras().getInt("expenses");
-        txtExpenses.setText(String.valueOf(y));
+        txtTotal.setText(String.valueOf(temp));
 
-        int total = x-y;
-        txtTotal.setText(String.valueOf(total));*/
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,9 +12,9 @@
         android:title="@string/title_goal" />
 
     <item
-        android:id="@+id/navigation_chart"
-        android:icon="@drawable/ic_action_chart_menu"
-        android:title="@string/title_chart" />
+        android:id="@+id/navigation_currency"
+        android:icon="@drawable/ic_action_currency_menu"
+        android:title="@string/title_currency" />
 
     <!-- <item
         android:id="@+id/navigation_current"

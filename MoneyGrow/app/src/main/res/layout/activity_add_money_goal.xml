@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kmitl.project.bdloner.moneygrow.AddMoneyGoal">
+    tools:context="kmitl.project.bdloner.moneygrow.view.AddMoneyGoal">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="274dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <kmitl.project.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.init.CustomTextView
             android:id="@+id/customTextView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <kmitl.project.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.init.CustomTextView
             android:id="@+id/old_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

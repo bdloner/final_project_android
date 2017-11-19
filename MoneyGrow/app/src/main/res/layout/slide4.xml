@@ -16,7 +16,7 @@
             android:layout_height="@dimen/img_height"
             android:src="@drawable/intro_wallet" />
 
-        <kmitl.project.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.init.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_slide4"
@@ -25,7 +25,7 @@
             android:textSize="@dimen/slide_title"
             android:textStyle="bold" />
 
-        <kmitl.project.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.init.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/desc_slide4"

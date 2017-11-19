@@ -37,7 +37,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_date" />
 
-            <kmitl.project.bdloner.moneygrow.CustomTextView
+            <kmitl.project.bdloner.moneygrow.init.CustomTextView
                 android:id="@+id/cat_title_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 app:layout_constraintStart_toEndOf="@+id/image_icon"
                 app:layout_constraintTop_toBottomOf="@+id/date_card" />
 
-            <kmitl.project.bdloner.moneygrow.CustomTextView
+            <kmitl.project.bdloner.moneygrow.init.CustomTextView
                 android:id="@+id/desc_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <kmitl.project.bdloner.moneygrow.CustomTextView
+            <kmitl.project.bdloner.moneygrow.init.CustomTextView
                 android:id="@+id/date_card"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
@@ -100,7 +100,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <kmitl.project.bdloner.moneygrow.CustomTextView
+            <kmitl.project.bdloner.moneygrow.init.CustomTextView
                 android:id="@+id/txt_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
@@ -130,7 +130,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" /> -->
 
-            <kmitl.project.bdloner.moneygrow.CustomTextView
+            <kmitl.project.bdloner.moneygrow.init.CustomTextView
                 android:id="@+id/amount_card"
                 android:layout_width="97dp"
                 android:layout_height="32dp"

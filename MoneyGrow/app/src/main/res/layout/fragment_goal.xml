@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="kmitl.project.bdloner.moneygrow.GoalFragment">
+    tools:context="kmitl.project.bdloner.moneygrow.view.GoalFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         </android.support.v7.widget.RecyclerView>
 
 
-        <kmitl.project.bdloner.moneygrow.CustomTextView
+        <kmitl.project.bdloner.moneygrow.init.CustomTextView
             android:id="@+id/empty_goal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="bottom|center"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="15dp"
             android:elevation="6dp"
             android:src="@drawable/ic_action_plus_goal"
             app:backgroundTint="@color/fab_plus_goal_color"

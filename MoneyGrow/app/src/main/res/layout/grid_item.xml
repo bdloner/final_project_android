@@ -18,7 +18,7 @@
         android:layout_gravity="center"
         app:srcCompat="@mipmap/ic_launcher" />
 
-    <kmitl.project.bdloner.moneygrow.CustomTextView
+    <kmitl.project.bdloner.moneygrow.init.CustomTextView
         android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

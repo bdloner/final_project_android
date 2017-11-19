@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kmitl.project.bdloner.moneygrow.WalletFragment">
+    tools:context="kmitl.project.bdloner.moneygrow.view.WalletFragment">
 
 
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
-            <kmitl.project.bdloner.moneygrow.CustomTextView
+            <kmitl.project.bdloner.moneygrow.init.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -46,7 +46,7 @@
 
     </LinearLayout>
 
-    <kmitl.project.bdloner.moneygrow.CustomTextView
+    <kmitl.project.bdloner.moneygrow.init.CustomTextView
         android:id="@+id/empty_wallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         android:textColor="#d1d1d1"
         android:visibility="invisible" />
 
-    <kmitl.project.bdloner.moneygrow.CustomTextView
+    <kmitl.project.bdloner.moneygrow.init.CustomTextView
         android:id="@+id/fab_in_text"
         android:layout_width="102dp"
         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
         app:backgroundTint="@color/fab1_color"
         app:pressedTranslationZ="12dp" />
 
-    <kmitl.project.bdloner.moneygrow.CustomTextView
+    <kmitl.project.bdloner.moneygrow.init.CustomTextView
         android:id="@+id/fab_ex_text"
         android:layout_width="102dp"
         android:layout_height="wrap_content"

@@ -21,10 +21,11 @@ public class myDbAdapter {
 
     }
 
-    public long insertData(String title, String start, String amount, String desc, String date)
+    public long insertData(String image, String title, String start, String amount, String desc, String date)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(myDbHelper.IMAGE_GOAL, image);
         contentValues.put(myDbHelper.TITLE_GOAL, title);
         contentValues.put(myDbHelper.START_GOAL, start);
         contentValues.put(myDbHelper.AMOUNT_GOAL, amount);
@@ -56,7 +57,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getReadableDatabase();
         List<List> datas = new ArrayList<>();
-        String[] columns = {myDbHelper.UID, myDbHelper.TITLE_GOAL, myDbHelper.START_GOAL,
+        String[] columns = {myDbHelper.UID, myDbHelper.IMAGE_GOAL ,myDbHelper.TITLE_GOAL, myDbHelper.START_GOAL,
                 myDbHelper.AMOUNT_GOAL, myDbHelper.DESC_GOAL, myDbHelper.DATE_GOAL};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME1,columns,null,null,null,null,null);
 
@@ -64,11 +65,13 @@ public class myDbAdapter {
         {
             List<String> data = new ArrayList<>();
             int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            String image =cursor.getString(cursor.getColumnIndex(myDbHelper.IMAGE_GOAL));
             String title =cursor.getString(cursor.getColumnIndex(myDbHelper.TITLE_GOAL));
             String start =cursor.getString(cursor.getColumnIndex(myDbHelper.START_GOAL));
             String amount =cursor.getString(cursor.getColumnIndex(myDbHelper.AMOUNT_GOAL));
             String desc =cursor.getString(cursor.getColumnIndex(myDbHelper.DESC_GOAL));
             String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE_GOAL));
+            data.add(image);
             data.add(title);
             data.add(start);
             data.add(amount);
@@ -151,16 +154,6 @@ public class myDbAdapter {
         return count;
     }
 
-    public int updateDetailGoal(String oldName , String newName)
-    {
-        SQLiteDatabase db = myhelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(myDbHelper.TITLE_GOAL,newName);
-        String[] whereArgs= {oldName};
-        int count =db.update(myDbHelper.TABLE_NAME1,contentValues, myDbHelper.TITLE_GOAL+" = ?",whereArgs );
-        return count;
-    }
-
     public int updateMoney(String newMoney, String oldId){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -185,11 +178,12 @@ public class myDbAdapter {
 
         // Value of goalTable
         private static final String UID="_id";     // Column I (Primary Key)
-        private static final String TITLE_GOAL = "Title_goal";    //Column II
-        private static final String START_GOAL = "Start_goal";    //Column III
-        private static final String AMOUNT_GOAL= "Amount_goal";    // Column IV
-        private static final String DESC_GOAL= "Desc_goal";    // Column V
-        private static final String DATE_GOAL= "Date_goal";    // Column VI
+        private static final String IMAGE_GOAL = "Image_goal";    //Column II
+        private static final String TITLE_GOAL = "Title_goal";    //Column III
+        private static final String START_GOAL = "Start_goal";    //Column IV
+        private static final String AMOUNT_GOAL= "Amount_goal";    // Column V
+        private static final String DESC_GOAL= "Desc_goal";    // Column VI
+        private static final String DATE_GOAL= "Date_goal";    // Column VII
 
         // Value of walletTable
         private static final String WID="_id";     // Column I (Primary Key)
@@ -201,9 +195,10 @@ public class myDbAdapter {
 
         // Create goalTable
         private static final String CREATE_TABLE1 = "CREATE TABLE "+TABLE_NAME1+
-                " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+TITLE_GOAL+" VARCHAR(255) ,"
-                + START_GOAL +" VARCHAR(255) ," + AMOUNT_GOAL +" VARCHAR(255) ,"
-                + DESC_GOAL +" VARCHAR(255) ," + DATE_GOAL +" VARCHAR(225));";
+                " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ IMAGE_GOAL +" VARCHAR(255) ,"
+                +TITLE_GOAL+" VARCHAR(255) ," + START_GOAL +" VARCHAR(255) ,"
+                + AMOUNT_GOAL +" VARCHAR(255) ," + DESC_GOAL +" VARCHAR(255) ,"
+                + DATE_GOAL +" VARCHAR(225));";
 
         // Create walletTable
         private static final String CREATE_TABLE2 = "CREATE TABLE "+TABLE_NAME2+

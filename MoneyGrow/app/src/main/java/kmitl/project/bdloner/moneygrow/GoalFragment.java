@@ -45,8 +45,8 @@ public class GoalFragment extends Fragment {
         fab_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), AddGoalActivity.class);
-                startActivity(in);
+                Intent intent = new Intent(getActivity(), AddGoalActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -82,9 +82,6 @@ public class GoalFragment extends Fragment {
                 getActivity().stopService(intent);
                 break;
             case 1:
-
-                break;
-            case 2:
                 remove(item.getGroupId());
                 break;
         }
@@ -113,12 +110,13 @@ public class GoalFragment extends Fragment {
         for (int i=0; i<datas.size();i++){
             List<String> eachGoal = datas.get(i);
             Goal listGoal = new Goal(
-                    ""+ eachGoal.get(0),// title
-                    ""+ eachGoal.get(1),
-                    ""+ eachGoal.get(2), // amount
-                    ""+ eachGoal.get(3), // desc
-                    "วันบรรลุเป้าหมาย: "+ eachGoal.get(4), // date
-                    ""+ eachGoal.get(5) // cid
+                    "" + eachGoal.get(0),
+                    ""+ eachGoal.get(1),// title
+                    ""+ eachGoal.get(2),
+                    ""+ eachGoal.get(3), // amount
+                    ""+ eachGoal.get(4), // desc
+                    "วันบรรลุเป้าหมาย: "+ eachGoal.get(5), // date
+                    ""+ eachGoal.get(6) // cid
             );
             listItemGoal.add(listGoal);
         }

@@ -1,6 +1,8 @@
 package kmitl.project.bdloner.moneygrow;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder>{
         public TextView titleGoal, startGoal, amountGoal, descGoal, dateGoal, percentGoal;
         public ConstraintLayout cardItem;
         public ProgressBar progress;
+        public ImageView imageIcon;
 
 
         public ViewHolder(View itemView) {
@@ -42,6 +46,7 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder>{
 
             cardItem = itemView.findViewById(R.id.cardItem);
 
+            imageIcon = itemView.findViewById(R.id.image_icon);
             titleGoal = itemView.findViewById(R.id.txt_title);
             startGoal = itemView.findViewById(R.id.start_amount);
             amountGoal = itemView.findViewById(R.id.txt_amount);
@@ -68,6 +73,7 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder>{
 
         final Goal goal = listItemGoal.get(position);
 
+        holder.imageIcon.setBackgroundResource(Integer.parseInt(goal.getImg_id()));
         holder.titleGoal.setText(goal.getTitle_goal());
         holder.startGoal.setText(goal.getStart_goal());
         holder.amountGoal.setText(goal.getAmount_goal());
@@ -82,59 +88,43 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder>{
         holder.percentGoal.setText("(" + String.valueOf(result_percent) + "%)");
         holder.progress.setProgress((int) Math.floor(result));
 
+        if(result >= 100){
+
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+            builder1.setMessage("คุณทำสำเร็จแล้ว ! คุณจะแชร์ให้เพื่อนๆรู้ไหมว่าคุณทำมันสำเร็จ.. ");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "ใช่แชร์เลย ! พร้อมลบรายการ",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            removeAt(position);
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "ไม่แชร์ ! พร้อมลบรายการ",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+
+
+
+        }
+
         holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
                 menu.add(holder.getAdapterPosition(), 0, 0, "เพิ่มเงิน");
-                menu.add(holder.getAdapterPosition(), 1, 0, "แก้ไขรายการ");
-                menu.add(holder.getAdapterPosition(), 2, 0, "ลบรายการ");
+                menu.add(holder.getAdapterPosition(), 1, 0, "ลบรายการ");
             }
         });
-
-        /*holder.cardItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String id = goal.getCid();
-                Intent intent = new Intent(context, AddMoneyGoal.class);
-                intent.putExtra("oldId",id);
-                context.startActivities(new Intent[]{intent});
-                context.stopService(intent);
-            }
-        });*/
-
-        /*holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MessageForDev  messageForDev = new MessageForDev();
-                String id = listEvent.getEventId();
-                int cnt = databaseAdapter.delete(id);
-                messageForDev.Log("POS : "+ cnt);
-                removeAt(position);
-            }
-        });*/
-
-        /*holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String id = listEvent.getEventId();
-                Intent intent;
-                intent =  new Intent(context, EditEventActivity.class);
-                intent.putExtra("oldId",id);
-                context.startActivities(new Intent[]{intent});
-                context.stopService(intent);
-
-            }
-        });
-        holder.infoLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("RecyclerAdapeter", listEvent.getEventId());
-                Intent intent;
-                intent = new Intent(context, ViewEventActivity.class);
-                intent.putExtra("id", listEvent.getEventId());
-                context.startActivities(new Intent[]{intent});
-            }
-        });*/
 
     }
 
@@ -144,8 +134,14 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder>{
     }
 
     public void removeAt(int position) {
+        final Goal goal= listItemGoal.get(position);
+
         listItemGoal.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listItemGoal.size());
+
+        String id = goal.getCid();
+        dbAdapter.delete(id);
+
     }
 }

@@ -42,13 +42,13 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/image_icon"
             android:layout_width="58dp"
             android:layout_height="54dp"
             android:layout_marginLeft="11dp"
             android:layout_marginStart="11dp"
             android:layout_marginTop="11dp"
-            android:background="@drawable/saving"
+            android:background="@drawable/picture_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,14 +110,14 @@
                 android:id="@+id/txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/imageView2"
+                android:layout_alignTop="@+id/image_icon"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_toEndOf="@+id/imageView2"
-                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/image_icon"
+                android:layout_toRightOf="@+id/image_icon"
                 android:text="Title"
                 android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/image_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -130,7 +130,7 @@
                 android:layout_marginStart="16dp"
                 android:text="Description"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/image_icon"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -144,7 +144,7 @@
                 android:layout_marginStart="16dp"
                 android:text="Target Date"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/image_icon"
                 app:layout_constraintTop_toBottomOf="@+id/txt_desc"
                 app:layout_constraintVertical_bias="0.083" />
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:text="คลิกค้างเพื่อแก้ไขหรือลบข้อมูล"
+                android:text="คลิกค้างเพื่อเพิ่มเงินหรือลบข้อมูล"
                 android:textColor="#bcbcbc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

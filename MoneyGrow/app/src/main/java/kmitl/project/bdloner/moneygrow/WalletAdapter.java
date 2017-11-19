@@ -3,7 +3,9 @@ package kmitl.project.bdloner.moneygrow;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
@@ -25,6 +27,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     private List<Wallet> listItemWallet;
     private Context context;
     private myDbAdapter dbAdapter;
+    private int type = 0;
 //    public int type;
 
     /*public WalletAdapter(int type)
@@ -73,14 +76,43 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     public void onBindViewHolder(final WalletAdapter.ViewHolder holder, final int position) {
 
         final Wallet wallet = listItemWallet.get(position);
+        int income = 0, expenses = 0;
 
         holder.imageIcon.setImageResource(Integer.parseInt(wallet.getImage_id_wallet()));
         holder.catTitleCard.setText(wallet.getCat_name_wallet());
 
+        check(position);
 
-        /*if(type == 1){
+        if(type == 0){
+            holder.amountCard.setTextColor(Color.parseColor("#FF009C1D"));
+
+            String in = wallet.getAmount_wallet();
+            in = in.replace("฿ ", "");
+
+            SharedPreferences sp = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("income", in);
+            editor.commit();
+
+            /*Intent intent = new Intent(context, MainActivity.class);
+            intent.putExtra("income", income);
+            context.startActivity(intent);*/
+
+        } else {
             holder.amountCard.setTextColor(Color.parseColor("#FFD1131C"));
-        }*/
+
+            String ex = wallet.getAmount_wallet();
+            ex = ex.replace("฿ ", "");
+
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("expenses", ex);
+            editor.commit();
+
+            /*Intent intent = new Intent(context, MainActivity.class);
+            intent.putExtra("expenses", expenses);
+            *//*context.startActivity(intent);*/
+        }
 
 
         /*if(value == 0){
@@ -111,20 +143,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
         });
 
 
-        /*String txtAmount = goal.getAmount_goal().replace(",", "");
-        String txtStart = goal.getStart_goal().replace(",", "");
-        */
-
-        /*holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-            @Override
-            public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                menu.add(holder.getAdapterPosition(), 0, 0, "เพิ่มเงิน");
-                menu.add(holder.getAdapterPosition(), 1, 0, "แก้ไขรายการ");
-                menu.add(holder.getAdapterPosition(), 2, 0, "ลบรายการ");
-            }
-        });*/
     }
-
     @Override
     public int getItemCount() {return listItemWallet.size();}
 
@@ -132,5 +151,19 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
         listItemWallet.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listItemWallet.size());
+    }
+
+    private void check(int position){
+
+        final Wallet wallet = listItemWallet.get(position);
+
+        if (wallet.getCat_name_wallet().equals("เงินเดือน") || wallet.getCat_name_wallet().equals("ยอดขาย") ||
+                wallet.getCat_name_wallet().equals("ดอกเบี้ย") || wallet.getCat_name_wallet().equals("การออม") ||
+                wallet.getCat_name_wallet().equals("ทุนการศึกษา") || wallet.getCat_name_wallet().equals("เงินรางวัล") ||
+                wallet.getCat_name_wallet().equals("เกษียณ") || wallet.getCat_name_wallet().equals("อื่นๆ")){
+            type = 0;
+        } else {
+            type = 1;
+        }
     }
 }

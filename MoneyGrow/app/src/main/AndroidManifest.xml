@@ -9,20 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IntroActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".CalculatorActivity" />
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".AddGoalActivity" />
-        <activity android:name=".AddMoneyGoal" />
-        <activity android:name=".EditWalletActivity"></activity>
+        <activity android:name=".IntroActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CalculatorActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CategoryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AddGoalActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AddMoneyGoal" android:screenOrientation="portrait" />
+        <activity android:name=".EditWalletActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SelectImgActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TotalWalletActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

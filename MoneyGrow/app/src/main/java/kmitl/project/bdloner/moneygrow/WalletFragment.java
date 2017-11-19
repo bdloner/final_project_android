@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 public class WalletFragment extends Fragment {
 
     private FloatingActionButton fab_plus, fab_ex, fab_in;
@@ -31,6 +34,7 @@ public class WalletFragment extends Fragment {
     private List<Wallet> listItemWallet = new ArrayList<>();
     private CustomTextView empty;
     private myDbAdapter dbAdapter;
+    private CardView card_view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -50,6 +54,7 @@ public class WalletFragment extends Fragment {
         fab_in = v.findViewById(R.id.fab_in);
         fab_ex_text = v.findViewById(R.id.fab_ex_text);
         fab_in_text = v.findViewById(R.id.fab_in_text);
+        card_view = v.findViewById(R.id.cardView);
 
         recyclerView = v.findViewById(R.id.all_item_wallet);
         recyclerView.setHasFixedSize(true);
@@ -61,6 +66,20 @@ public class WalletFragment extends Fragment {
         FabClose = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
         FabRClockwisw = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_clockwise);
         FabRanticlockwise = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_anticlockwise);
+
+        /*int x = getActivity().getIntent().getExtras().getInt("income");
+        txtIncome.setText(x);
+
+        int y = getActivity().getIntent().getExtras().getInt("expenses");
+        txtExpenses.setText(y);*/
+
+        card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TotalWalletActivity.class);
+                startActivity(intent);
+            }
+        });
 
         fab_plus.setOnClickListener(new View.OnClickListener() {
             @Override

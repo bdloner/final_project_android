@@ -42,8 +42,8 @@ public class AddMoneyGoal extends AppCompatActivity {
 
         for (int i=0; i<datas.size();i++) {
             List<String> eachEvent = datas.get(i);
-            if (eachEvent.get(5).equals(oldId)) {
-                oldAmount.setText(eachEvent.get(1));
+            if (eachEvent.get(6).equals(oldId)) {
+                oldAmount.setText(eachEvent.get(2));
             }
         }
 

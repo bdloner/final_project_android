@@ -1,15 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="kmitl.project.bdloner.moneygrow.GoalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/showAll"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- TODO: Update blank fragment layout -->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/all_item_goal"
@@ -19,28 +26,29 @@
 
         </android.support.v7.widget.RecyclerView>
 
-    </android.support.constraint.ConstraintLayout>
 
-    <kmitl.project.bdloner.moneygrow.CustomTextView
-        android:id="@+id/empty_goal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ยังไม่มีเป้าหมาย"
-        android:textSize="50dp"
-        android:textColor="#d1d1d1"
-        android:layout_gravity="center"
-        android:visibility="invisible"/>
+        <kmitl.project.bdloner.moneygrow.CustomTextView
+            android:id="@+id/empty_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ยังไม่มีเป้าหมาย"
+            android:textColor="#d1d1d1"
+            android:textSize="50dp"
+            android:visibility="invisible" />
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_plus"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="16dp"
-        android:elevation="6dp"
-        android:src="@drawable/ic_action_plus_goal"
-        app:backgroundTint="@color/fab_plus_goal_color"
-        app:pressedTranslationZ="12dp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_plus"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="8dp"
+            android:elevation="6dp"
+            android:src="@drawable/ic_action_plus_goal"
+            app:backgroundTint="@color/fab_plus_goal_color"
+            app:pressedTranslationZ="12dp" />
 
-</FrameLayout>
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

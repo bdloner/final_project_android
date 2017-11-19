@@ -115,6 +115,8 @@ public class CalculatorActivity extends AppCompatActivity {
         if(result != "" || screen.getText().toString().equals("0") || screen.getText().toString().equals("00")){
             clear();
             updateScreen();
+        } else {
+
         }
         Button b = (Button) v;
         display += b.getText();

@@ -1,6 +1,8 @@
 package kmitl.project.bdloner.moneygrow;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -21,16 +24,20 @@ import java.util.Locale;
 
 public class AddGoalActivity extends AppCompatActivity {
 
+    private ImageView image, plusImage;
     private EditText title, start, amount, desc, dateGoal;
     private myDbAdapter helper;
     private Button cancelBtn, addBtn;
     private Calendar myCalendar;
+    private String img = "2131165346";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal);
 
+        image = findViewById(R.id.selectPicture);
+        plusImage = findViewById(R.id.plusPicture);
         title= findViewById(R.id.title_goal);
         start= findViewById(R.id.start_goal);
         amount= findViewById(R.id.amount_goal);
@@ -69,10 +76,34 @@ public class AddGoalActivity extends AppCompatActivity {
             }
         });
 
+        image.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), SelectImgActivity.class);
+                startActivityForResult(intent, 1);
+
+            }
+        });
+
+        plusImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), SelectImgActivity.class);
+                startActivityForResult(intent, 1);
+
+            }
+        });
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 add();
+
             }
         });
 
@@ -101,6 +132,7 @@ public class AddGoalActivity extends AppCompatActivity {
     public void add() {
         Goal goal = new Goal();
 
+        goal.setImg_id(img);
         goal.setTitle_goal(title.getText().toString());
         goal.setStart_goal(start.getText().toString());
         goal.setAmount_goal(amount.getText().toString());
@@ -111,14 +143,13 @@ public class AddGoalActivity extends AppCompatActivity {
         String txtAmount = goal.getAmount_goal().replace(",", "");
 
         if(goal.getTitle_goal().isEmpty() || goal.getStart_goal().isEmpty()
-                || goal.getAmount_goal().isEmpty() || goal.getDescription_goal().isEmpty()
-                || goal.getDate_goal().isEmpty())
+                || goal.getAmount_goal().isEmpty() || goal.getDate_goal().isEmpty())
         {
             Toast.makeText(getApplicationContext(), "กรุณากรอกข้อมูลให้ครบ", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            long id = helper.insertData(goal.getTitle_goal(),goal.getStart_goal(),
+            long id = helper.insertData(goal.getImg_id(), goal.getTitle_goal(),goal.getStart_goal(),
                     goal.getAmount_goal(),goal.getDescription_goal(), goal.getDate_goal());
             if(id<=0)
             {
@@ -221,5 +252,21 @@ public class AddGoalActivity extends AppCompatActivity {
                 start.addTextChangedListener(this);
             }
         };
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                String result = data.getStringExtra("result");
+                image.setBackgroundResource(Integer.parseInt(result));
+                img = result;
+
+            }/*
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }*/
+        }
     }
 }

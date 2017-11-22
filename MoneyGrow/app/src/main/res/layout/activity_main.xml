@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="kmitl.project.bdloner.moneygrow.view.MainActivity">
+    tools:context="kmitl.project.bdloner.moneygrow.controller.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

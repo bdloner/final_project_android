@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.IntroActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".controller.MainActivity" android:screenOrientation="portrait"/>
         <activity android:name=".view.CalculatorActivity" android:screenOrientation="portrait"/>
         <activity android:name=".view.CategoryActivity" android:screenOrientation="portrait"/>
         <activity android:name=".view.AddGoalActivity" android:screenOrientation="portrait"/>

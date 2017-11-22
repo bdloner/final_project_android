@@ -25,7 +25,6 @@ public class SelectImgActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            //Do any thing when user click to item
             Toast.makeText(getApplicationContext(), imageList.get(position).getImage_title(), Toast.LENGTH_SHORT).show();
 
             String iconId = String.valueOf(imageList.get(position).getImage_id());

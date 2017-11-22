@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import kmitl.project.bdloner.moneygrow.R;
+import kmitl.project.bdloner.moneygrow.controller.MainActivity;
 
 public class IntroActivity extends Activity {
 
@@ -33,13 +34,13 @@ public class IntroActivity extends Activity {
         public void onPageSelected(int position) {
             addBottomDots(position);
 
-            // changing the next button text 'NEXT' / 'GOT IT'
+
             if (position == layouts.length - 1) {
-                // last page. make button text to GOT IT
+
                 btnNext.setText(getString(R.string.start));
                 btnSkip.setVisibility(View.GONE);
             } else {
-                // still pages are left
+
                 btnNext.setText(getString(R.string.next));
                 btnSkip.setVisibility(View.VISIBLE);
             }

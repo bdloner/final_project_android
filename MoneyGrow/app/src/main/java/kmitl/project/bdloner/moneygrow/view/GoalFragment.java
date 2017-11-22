@@ -33,10 +33,9 @@ public class GoalFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public GoalFragment() {
-        // Required empty public constructor
+
     }
 
-    // TODO: Rename and change types and number of parameters
     public static GoalFragment newInstance(String param1, String param2) {
         GoalFragment fragment = new GoalFragment();
         Bundle args = new Bundle();

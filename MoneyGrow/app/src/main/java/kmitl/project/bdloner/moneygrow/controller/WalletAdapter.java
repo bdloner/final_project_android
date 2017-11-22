@@ -48,7 +48,6 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     public void onBindViewHolder(final WalletAdapter.ViewHolder holder, final int position) {
 
         final Wallet wallet = listItemWallet.get(position);
-        int income = 0, expenses = 0;
 
         holder.imageIcon.setImageResource(Integer.parseInt(wallet.getImage_id_wallet()));
         holder.catTitleCard.setText(wallet.getCat_name_wallet());
@@ -58,45 +57,10 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
         if (type == 0) {
             holder.amountCard.setTextColor(Color.parseColor("#FF009C1D"));
 
-            String in = wallet.getAmount_wallet();
-            in = in.replace("฿ ", "");
-
-            SharedPreferences sp = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putString("income", in);
-            editor.commit();
-
-            /*Intent intent = new Intent(context, MainActivity.class);
-            intent.putExtra("income", income);
-            context.startActivity(intent);*/
-
         } else {
             holder.amountCard.setTextColor(Color.parseColor("#FFD1131C"));
-            
 
-            String ex = wallet.getAmount_wallet();
-            ex = ex.replace("฿ ", "");
-
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("expenses", ex);
-            editor.commit();
-
-            /*Intent intent = new Intent(context, MainActivity.class);
-            intent.putExtra("expenses", expenses);
-            *//*context.startActivity(intent);*/
         }
-
-
-        /*if(value == 0){
-            holder.amountCard.setTextColor(Color.parseColor("#FF009C1D"));
-        } else {
-            holder.amountCard.setTextColor(Color.parseColor("#FFD1131C"));
-        }*/
-
-        /*if (wallet.getCat_name_wallet().equals("เงินเดือน")){
-            holder.amountCard.setTextColor(Color.parseColor("#FF009C1D"));
-        }*/
 
         String strDateCard = wallet.getDate_wallet();
         String[] parts = strDateCard.split(", ");

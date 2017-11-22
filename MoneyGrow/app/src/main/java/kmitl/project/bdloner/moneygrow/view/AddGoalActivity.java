@@ -262,10 +262,7 @@ public class AddGoalActivity extends AppCompatActivity {
                 image.setBackgroundResource(Integer.parseInt(result));
                 img = result;
 
-            }/*
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }*/
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package kmitl.project.bdloner.moneygrow.view;
+package kmitl.project.bdloner.moneygrow.controller;
 
 
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import kmitl.project.bdloner.moneygrow.R;
+import kmitl.project.bdloner.moneygrow.view.CurrencyFragment;
+import kmitl.project.bdloner.moneygrow.view.GoalFragment;
+import kmitl.project.bdloner.moneygrow.view.WalletFragment;
 
 public class MainActivity extends AppCompatActivity {
 

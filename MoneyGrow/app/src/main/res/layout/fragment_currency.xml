@@ -6,8 +6,24 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <kmitl.project.bdloner.moneygrow.init.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="แปลงค่าเงินจาก USD เป็นค่าเงินต่างๆทั่วโลก"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:background="#b34d0d"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp">
 
         <ListView
 

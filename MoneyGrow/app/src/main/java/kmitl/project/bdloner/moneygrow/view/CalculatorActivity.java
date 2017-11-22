@@ -1,5 +1,6 @@
 package kmitl.project.bdloner.moneygrow.view;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,12 +16,14 @@ import android.widget.EditText;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
 import kmitl.project.bdloner.moneygrow.R;
+import kmitl.project.bdloner.moneygrow.model.Wallet;
 
-public class CalculatorActivity extends AppCompatActivity {
+public class CalculatorActivity extends AppCompatActivity{
 
     private EditText screen;
     private Button test;
@@ -45,7 +48,7 @@ public class CalculatorActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
+
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -57,7 +60,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
                 new DatePickerDialog(CalculatorActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -84,9 +87,6 @@ public class CalculatorActivity extends AppCompatActivity {
             b.setVisibility(View.VISIBLE);
         }
 
-        /*String strX = String.valueOf(x);*/
-
-        //DateTime
         textDate.setText(formatTh().format(myCalendar.getTime()));
         textDate.setTextColor(Color.parseColor("#ffffff"));
 
@@ -112,12 +112,19 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     public void onClickNumber(View v) {
+        Button b = (Button) v;
 
-        if (result != "" || screen.getText().toString().equals("0") || screen.getText().toString().equals("00")) {
+        if (display.equals("")) {
+            if(b.equals("00")){
+                screen.setText("0");
+            }
+        }
+
+        else if (result != "" || screen.getText().toString().equals("0") || screen.getText().toString().equals("00")) {
             clear();
             updateScreen();
         }
-        Button b = (Button) v;
+
         display += b.getText();
         updateScreen();
     }
@@ -175,14 +182,14 @@ public class CalculatorActivity extends AppCompatActivity {
         result = "";
         switch (op) {
             case "+":
-                return Double.valueOf(a) + Double.valueOf(b);
+                return Double.parseDouble((String.format("%.2f", Double.valueOf(a) + Double.valueOf(b))));
             case "-":
-                return Double.valueOf(a) - Double.valueOf(b);
+                return Double.parseDouble((String.format("%.2f", Double.valueOf(a) - Double.valueOf(b))));
             case "x":
-                return Double.valueOf(a) * Double.valueOf(b);
+                return Double.parseDouble((String.format("%.2f", Double.valueOf(a) * Double.valueOf(b))));
             case "/":
                 try {
-                    return Double.valueOf(a) / Double.valueOf(b);
+                    return Double.parseDouble(String.format("%.2f", Double.valueOf(a) / Double.valueOf(b)));
                 } catch (Exception e) {
                     Log.d("CalError", e.getMessage());
                 }
@@ -207,11 +214,13 @@ public class CalculatorActivity extends AppCompatActivity {
 
 
     public void onClickCatIncome(View view) {
-        if (screen.getText().toString().trim().equals("")) {
+        if (screen.getText().toString().trim().equals("") || !isNumeric(screen.getText().toString())
+                || screen.getText().toString().trim().equals("NaN") || screen.getText().toString().trim().equals("Infinity")){
 
             screen.setError("Money is required!");
 
         } else {
+
             screen.setError(null);
 
             int x = getIntent().getExtras().getInt("btnCatIn");
@@ -243,6 +252,20 @@ public class CalculatorActivity extends AppCompatActivity {
             }
         }
 
-
     }
+
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
 }

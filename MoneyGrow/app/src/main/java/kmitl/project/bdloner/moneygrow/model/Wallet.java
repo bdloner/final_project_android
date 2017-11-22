@@ -1,5 +1,7 @@
 package kmitl.project.bdloner.moneygrow.model;
 
+import java.util.Date;
+
 /**
  * Created by BDLoneR on 16/11/2560.
  */
@@ -19,6 +21,7 @@ public class Wallet {
 
     public Wallet(String image_id_wallet, String cat_name_wallet, String date_wallet,
                   String amount_wallet, String note_wallet, String wid) {
+
         this.image_id_wallet = image_id_wallet;
         this.cat_name_wallet = cat_name_wallet;
         this.date_wallet = date_wallet;

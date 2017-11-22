@@ -35,37 +35,17 @@ public class TotalWalletActivity extends AppCompatActivity {
 
         homeBtn = findViewById(R.id.home_btn);
 
-        /*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);*/
-
-        /*SharedPreferences sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
-
-        String dataIncome = sp.getString("income", "0");
-
-        txtOldIncome.setText(dataIncome);
-
-        txtIncome.getText().toString();
-
-        String testOld = txtOldIncome.getText().toString();
-        String testNew = txtIncome.getText().toString();
-
-        int test1 = Integer.parseInt(testOld);
-        int test2 = Integer.parseInt(testNew);
-
-        test2 = test1 + test2;
-
-        txtIncome.setText(String.valueOf(test2));*/
-
         dbAdapter = new myDbAdapter(getApplicationContext());
         List<List> datas = dbAdapter.getDataWallet();
 
-        int temp = 0, tempIn =0, tempEx=0;
+        Double temp = 0.0, tempIn =0.0, tempEx=0.0;
         String txtTemp = "";
         for(int i=0;i<datas.size();i++){
             txtTemp = String.valueOf(datas.get(i).get(2));
 
-            temp += Integer.parseInt(txtTemp);
+            temp += Double.parseDouble(txtTemp);
 
-            int tempCheck = Integer.parseInt(txtTemp);
+            Double tempCheck = Double.parseDouble(txtTemp);
 
             if(tempCheck >= 0){
                 tempIn += tempCheck;

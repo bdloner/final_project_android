@@ -18,7 +18,9 @@ public class Goal {
 
     }
 
-    public Goal(String img_id, String title_goal, String start_goal, String amount_goal, String description_goal, String date_goal, String cid) {
+    public Goal(String img_id, String title_goal, String start_goal, String amount_goal,
+                String description_goal, String date_goal, String cid) {
+
         this.img_id = img_id;
         this.title_goal = title_goal;
         this.start_goal = start_goal;

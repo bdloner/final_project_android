@@ -30,7 +30,7 @@ public class CurrencyFragment extends Fragment implements Callback<CurrencyExcha
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_currency, container, false);
 
         lvCurrency = v.findViewById(R.id.list_view_currency);
@@ -58,7 +58,6 @@ public class CurrencyFragment extends Fragment implements Callback<CurrencyExcha
 
     @Override
     public void onResponse(Call<CurrencyExchange> call, Response<CurrencyExchange> response) {
-        //Toast.makeText(this, response.body().getBase(), Toast.LENGTH_LONG).show();
         CurrencyExchange currencyExchange = response.body();
         try {
             lvCurrency.setAdapter(new CurrencyAdapter(getActivity(), currencyExchange.getCurrencyList(), this));
@@ -74,7 +73,6 @@ public class CurrencyFragment extends Fragment implements Callback<CurrencyExcha
 
     @Override
     public void onCurrencyItemClick(Currency c) {
-        //Toast.makeText(this, c.getName(), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), ChangeCurrencyActivity.class);
         intent.putExtra("currency_name", c.getName());
         intent.putExtra("currency_rate", c.getRate());

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_currency:
                     CurrencyFragment fragmentCurrency = new CurrencyFragment();
-                    transaction.replace(R.id.content, fragmentCurrency, "CurrencyCurrency").commit();
+                    transaction.replace(R.id.content, fragmentCurrency, "CurrencyFragment").commit();
                     return true;
             }
             return false;
